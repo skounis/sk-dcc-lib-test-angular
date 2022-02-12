@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sk-dcc-lib-test-angular": {
+    "eu-dcc-lib-test-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sk-dcc-lib-test-angular",
+            "outputPath": "dist/eu-dcc-lib-test-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sk-dcc-lib-test-angular:build:production"
+              "browserTarget": "eu-dcc-lib-test-angular:build:production"
             },
             "development": {
-              "browserTarget": "sk-dcc-lib-test-angular:build:development"
+              "browserTarget": "eu-dcc-lib-test-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sk-dcc-lib-test-angular:build"
+            "browserTarget": "eu-dcc-lib-test-angular:build"
           }
         },
         "test": {
@@ -102,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "sk-dcc-lib-test-angular"
+  "defaultProject": "eu-dcc-lib-test-angular"
 }

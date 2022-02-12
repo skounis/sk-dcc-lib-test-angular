@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/sk-dcc-lib-test-angular'),
+      dir: require('path').join(__dirname, './coverage/eu-dcc-lib-test-angular'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -1,5 +1,5 @@
 {
-  "name": "sk-dcc-lib-test-angular",
+  "name": "eu-dcc-lib-test-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -18,8 +18,8 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "eu-dcc-lib": "^0.0.3",
     "rxjs": "~7.4.0",
-    "sk-dcc-lib": "^0.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
