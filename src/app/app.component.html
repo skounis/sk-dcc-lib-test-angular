@@ -148,6 +148,20 @@
     margin-left: 60px;
   }
 
+
+.card.button {
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid rgba(27,31,35,.2);
+  background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+}
+
+.card.button:hover {
+  border: 1px solid #1976d2;
+  background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
+  border-color: rgba(27,31,35,.35);
+  background-position: -.5em;
+}
   svg#rocket {
     width: 80px;
     position: absolute;
@@ -200,11 +214,22 @@
     text-indent: 4px;
   }
 
-  .terminal pre {
+  .terminal pre,
+  .terminal textarea {
     font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
+  }
+
+  .terminal textarea {
+    background-color: rgb(15, 15, 16);
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 230px;
+    border-color: rgb(15, 15, 16);
+    padding: 1rem;
+    outline: none;
   }
 
   .circle-link {
@@ -320,7 +345,7 @@
 </div>
 
 <div class="content" role="main">
-
+  
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
 
@@ -342,6 +367,15 @@
       <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
     </svg>
 
+  </div>
+
+  <!-- Input -->
+  <div class="terminal">
+    <textarea [(ngModel)]="input" placeholder="Paste the string content of the EU-DCC QR Code" (keyup)="clear()"></textarea>
+  </div>
+
+  <div class="card card-small button" style="margin: 2rem;" (click)="decode()">
+    <span>Decode</span>
   </div>
   
   <!-- Terminal -->

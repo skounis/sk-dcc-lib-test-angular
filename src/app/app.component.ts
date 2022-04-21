@@ -12,8 +12,25 @@ export class AppComponent {
   output ='';
 
   constructor() {
-    const dcc = decode_hcert(this.input);
-    this.output = JSON.stringify(dcc, null, 2);
-    console.log(dcc)
+    this.decode()
+  }
+
+  decode() {
+    this._decode(this.input);
+  }
+  
+  clear() {
+    this.output='';
+  }
+
+  private _decode(input: string){
+    try {
+      const dcc = decode_hcert(input);
+      this.output = JSON.stringify(dcc, null, 2);
+      console.log(dcc)
+    } catch (error: any) {
+      this.output = error.message;
+      console.log(error.message)
+    }
   }
 }
