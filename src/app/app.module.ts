@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ZXingScannerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -369,17 +369,35 @@
 
   </div>
 
+  <!-- Input scanner 
+       https://medium.com/swlh/scanning-barcode-or-qr-code-in-an-angular-app-with-zxing-9d3c8dfd5b96
+  -->
+  <div style="margin: 2rem;">
+    <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+    </zxing-scanner>
+
+    <!-- <button (click)="enableScanner()" *ngIf="!scannerEnabled" type="button" class="btn btn-success">LEER
+        OTRO</button> -->
+  </div>
+
   <!-- Input -->
-  <div class="terminal">
+  <div class="terminal" *ngIf="!scannerEnabled">
     <textarea [(ngModel)]="input" placeholder="Paste the string content of the EU-DCC QR Code" (keyup)="clear()"></textarea>
   </div>
 
-  <div class="card card-small button" style="margin: 2rem;" (click)="decode()">
-    <span>Decode</span>
+  <div style="display:flex; flex-direction: row;">
+    <div *ngIf="!scannerEnabled" class="card card-small button" style="margin: 2rem;" (click)="decode()">
+      <span>Decode</span>
+    </div>
+  
+    <div class="card card-small button" style="margin: 2rem;" (click)="enableScanner()">
+      <span>Toogle Scanner</span>
+    </div>
   </div>
+
   
   <!-- Terminal -->
-  <div class="terminal">
+  <div class="terminal" *ngIf="!scannerEnabled">
       <pre>dcclib$ decode {{input}}</pre>
       <pre>dcclib$ {{output}}</pre>
   </div>
