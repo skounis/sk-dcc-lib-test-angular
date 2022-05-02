@@ -1,4 +1,12 @@
-# SkDccLibTestAngular
+# EU-DCC Library - Angular Example
+
+[![Issues](https://img.shields.io/github/issues/skounis/sk-dcc-lib-test-angular?style=for-the-badge)](https://github.com/skounis/sk-dcc-lib-test-angular/issues) 
+[![License](https://img.shields.io/github/license/skounis/sk-dcc-lib-test-angular?style=for-the-badge)](https://github.com/skounis/sk-dcc-lib-test-angular#licensing) 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://skounis.github.io/sk-dcc-lib-test-angular/)
+
+A very simple Angular application for demonstrating the use of the experimental [EU-DCC Javascript library](https://github.com/skounis/sk-dcc-lib)
+
+* [Scan an EU-DCC online](https://skounis.github.io/sk-dcc-lib-test-angular)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
