@@ -420,6 +420,10 @@
       <span>Decode</span>
     </div>
   
+    <div *ngIf="!scannerEnabled" class="card card-small button" style="margin: 2rem;" (click)="verify()">
+      <span>Verify</span>
+    </div>
+
     <div class="card card-small button" style="margin: 2rem;" (click)="enableScanner()">
       <span>Toogle Scanner</span>
     </div>
@@ -430,6 +434,10 @@
   <div class="terminal" *ngIf="!scannerEnabled">
       <pre>dcclib$ decode {{input}}</pre>
       <pre>dcclib$ {{output}}</pre>
+      <img 
+        *ngIf="!!verified"
+        alt="Verified" src="./assets/certificate.svg"
+        style="width: 44px; position: absolute; bottom: 0.3rem; right: 0.3rem; filter: invert(1) sepia(100) saturate(100) hue-rotate(60deg);">
   </div>
 
   <!-- Footer -->
