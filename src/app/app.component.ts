@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { decode_hcert, verify_hcert } from 'eu-dcc-lib';
+import * as eudcc from 'eu-dcc-lib';
 import trustlist from '../assets/trustlist.json';
 
 @Component({
@@ -22,7 +22,6 @@ export class AppComponent {
   verified = false;
 
   constructor() {
-    this.decode()
     this.verify()
   }
 
@@ -62,9 +61,14 @@ export class AppComponent {
     const device = this.availableDevices.find(x => x.deviceId === (<HTMLSelectElement>selected.target).value);
     this.currentDevice = device || undefined;
   }
+
+  /**
+   * Decode the EU DCC Certificate
+   * @param {string} input - The string representation of the QR Code. 
+   */
   private _decode(input: string): any{
     try {
-      const dcc = decode_hcert(input);
+      const dcc = eudcc.decode(input);
       this.output = JSON.stringify(dcc, null, 2);
       console.log(dcc)
       return dcc;
@@ -74,41 +78,42 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Decode and Verlify the validity of the EU DCC Certificate
+   * @param {string} input - The string representation of the QR Code. 
+   */
   private _verify(input: string) {
     const dcc = this._decode(input);
     const kid = dcc.metadata.kid; // 'FhciF/j3plg=';
-    const pem = `-----BEGIN CERTIFICATE-----
-    ${this._getPem(kid)}
-    -----END CERTIFICATE-----`
-    console.log('PEM', pem)
+    const pem = this._getPem(kid);
     try {
-      const verify = verify_hcert(input, pem);
-      verify.then((buf:any) => {
-        this.verified = true;
-        console.log('All Good.');
-        console.log(buf);
-        this.output = this.output + `\n\n The Certificate is Verified.`
-      }).catch((error:any) => {
-          console.error('Verification failed.');
-          console.error(error);
-          this.output = this.output + `\n\n Verification failed. ${error}`
-      });
+      eudcc.verify(input, pem);
+      this.output = this.output + `\n\n The Certificate is Verified.`
+      this.verified = true;
     } catch (error: any) {
       console.log(error.message)
       this.output = this.output + `\n\n Verification failed. ${error.message}`
+      this.verified = false;
     }
-
   }
 
+  /**
+   * Find the Signing Certificate in the trustlist.
+   * 
+   * @param kid The kid of the signing certificate.
+   * @returns {string} The PEM encoded certificate.
+   */
   private _getPem(kid: string): string {
+    const header = `-----BEGIN CERTIFICATE-----`;
+    const footer = `-----END CERTIFICATE-----`;
     const certificate = trustlist.certificates.filter(e => {
       return e.kid == kid;
     })
 
     if(certificate.length > 0) {
-      return certificate[0].rawData;
+      return `${header}\n${certificate[0].rawData}\n${footer}`;
     } else {
-      return 'No Certificate found.'
+      return ''
     }
   }
 }
